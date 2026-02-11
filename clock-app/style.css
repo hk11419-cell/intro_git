@@ -1,0 +1,206 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: transparent;
+  font-family: 'Segoe UI', 'Yu Gothic UI', sans-serif;
+  user-select: none;
+  overflow: hidden;
+}
+
+.clock-container {
+  width: 400px;
+  height: 500px;
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(100, 100, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景のグロー効果 */
+.clock-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(99, 102, 241, 0.08) 0%,
+    transparent 50%
+  );
+  animation: glow-rotate 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes glow-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* タイトルバー */
+.titlebar {
+  width: 100%;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  -webkit-app-region: drag;
+  z-index: 10;
+}
+
+.titlebar-text {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.close-btn {
+  -webkit-app-region: no-drag;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 18px;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: rgba(239, 68, 68, 0.8);
+  color: white;
+}
+
+/* アナログ時計 */
+.analog-clock {
+  margin-top: 16px;
+  z-index: 1;
+}
+
+.clock-face {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #0f0f23, #1a1a3e);
+  border: 2px solid rgba(99, 102, 241, 0.2);
+  position: relative;
+  box-shadow:
+    0 0 30px rgba(99, 102, 241, 0.1),
+    inset 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 時刻の目盛り */
+.marking {
+  position: absolute;
+  width: 2px;
+  height: 16px;
+  background: rgba(99, 102, 241, 0.5);
+  top: 12px;
+  left: 50%;
+  transform-origin: 50% 118px;
+  border-radius: 1px;
+}
+
+.marking-1  { transform: translateX(-50%) rotate(30deg); }
+.marking-2  { transform: translateX(-50%) rotate(60deg); }
+.marking-3  { transform: translateX(-50%) rotate(90deg);  width: 3px; height: 20px; background: rgba(99, 102, 241, 0.8); }
+.marking-4  { transform: translateX(-50%) rotate(120deg); }
+.marking-5  { transform: translateX(-50%) rotate(150deg); }
+.marking-6  { transform: translateX(-50%) rotate(180deg); width: 3px; height: 20px; background: rgba(99, 102, 241, 0.8); }
+.marking-7  { transform: translateX(-50%) rotate(210deg); }
+.marking-8  { transform: translateX(-50%) rotate(240deg); }
+.marking-9  { transform: translateX(-50%) rotate(270deg); width: 3px; height: 20px; background: rgba(99, 102, 241, 0.8); }
+.marking-10 { transform: translateX(-50%) rotate(300deg); }
+.marking-11 { transform: translateX(-50%) rotate(330deg); }
+.marking-12 { transform: translateX(-50%) rotate(360deg); width: 3px; height: 20px; background: rgba(99, 102, 241, 0.8); }
+
+/* 針 */
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: 50% 100%;
+  border-radius: 4px;
+}
+
+.hour-hand {
+  width: 4px;
+  height: 70px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
+  margin-left: -2px;
+  z-index: 3;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.minute-hand {
+  width: 3px;
+  height: 95px;
+  background: linear-gradient(to top, rgba(199, 210, 254, 0.9), rgba(199, 210, 254, 0.5));
+  margin-left: -1.5px;
+  z-index: 4;
+  box-shadow: 0 0 6px rgba(199, 210, 254, 0.3);
+}
+
+.second-hand {
+  width: 1.5px;
+  height: 105px;
+  background: linear-gradient(to top, #ef4444, #f87171);
+  margin-left: -0.75px;
+  z-index: 5;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+.center-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, #ef4444, #b91c1c);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+/* デジタル時計 */
+.digital-clock {
+  margin-top: 32px;
+  text-align: center;
+  z-index: 1;
+}
+
+.time {
+  font-size: 48px;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 4px;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.date {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 8px;
+  letter-spacing: 1px;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stylish Clock</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="clock-container" id="clockContainer">
+    <!-- ドラッグ用のタイトルバー -->
+    <div class="titlebar" id="titlebar">
+      <span class="titlebar-text">Stylish Clock</span>
+      <button class="close-btn" id="closeBtn">&times;</button>
+    </div>
+
+    <!-- アナログ時計 -->
+    <div class="analog-clock">
+      <div class="clock-face">
+        <div class="marking marking-1"></div>
+        <div class="marking marking-2"></div>
+        <div class="marking marking-3"></div>
+        <div class="marking marking-4"></div>
+        <div class="marking marking-5"></div>
+        <div class="marking marking-6"></div>
+        <div class="marking marking-7"></div>
+        <div class="marking marking-8"></div>
+        <div class="marking marking-9"></div>
+        <div class="marking marking-10"></div>
+        <div class="marking marking-11"></div>
+        <div class="marking marking-12"></div>
+        <div class="hand hour-hand" id="hourHand"></div>
+        <div class="hand minute-hand" id="minuteHand"></div>
+        <div class="hand second-hand" id="secondHand"></div>
+        <div class="center-dot"></div>
+      </div>
+    </div>
+
+    <!-- デジタル時計 -->
+    <div class="digital-clock">
+      <div class="time" id="digitalTime">00:00:00</div>
+      <div class="date" id="digitalDate">2024年1月1日 月曜日</div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
